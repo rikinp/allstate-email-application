@@ -1,6 +1,8 @@
 import React from "react";
 import "./Email.css";
 import Divider from "@mui/material/Divider";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 function Email({ selectedEmail }) {
   return (
@@ -21,6 +23,7 @@ function Email({ selectedEmail }) {
             <div className="mail-message">
               <p>{selectedEmail.message}</p>
             </div>
+
           </div>
         </div>
       ) : (

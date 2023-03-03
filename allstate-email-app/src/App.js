@@ -7,29 +7,19 @@ import axios from "axios";
 function App() {
   const [emailData, setEmailData] = useState([]);
 
-  const [selectedEmail, setSelectedEmail] = useState(null);
-  const handleEmailSelected = (email) => {
-    setSelectedEmail(email);
-    console.log(email);
-  };
-
   const deleteEmail = (email) => {
-    const emails = emailData;
     const requestOptions = {
       method: "DELETE",
     };
     fetch(`/email/delete/${email.id}`, requestOptions)
       .then((response) => {
         if (response.ok) {
-          const idx = emails.indexOf(email);
-          emails.splice(idx, 1);
           getData();
         }
       });
   };
 
   const toggleSeen = (clickedEmail) => {
-    const emails = emailData;
     if(clickedEmail.seen === false) {
       clickedEmail.seen = true;
       const requestOptions = {
@@ -58,7 +48,6 @@ function App() {
     <div className="App">
       <PermanentDrawerLeft
         emailData={emailData}
-        onEmailSelected={handleEmailSelected}
         deleteEmail={deleteEmail}
         toggleSeen={toggleSeen}
       />

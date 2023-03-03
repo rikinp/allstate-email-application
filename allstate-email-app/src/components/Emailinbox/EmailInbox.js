@@ -16,8 +16,7 @@ import Avatar from "@mui/material/Avatar";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-import MailIcon from "@mui/icons-material/Mail";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Badge } from "@material-ui/core";
 import { Mail } from "@material-ui/icons";
 import Email from "../E-mail/Email";
@@ -26,17 +25,14 @@ import "./SearchBar.css";
 
 const drawerWidth = 400;
 
-export default function PermanentDrawerLeft({ emailData, onEmailSelected, deleteEmail, toggleSeen }) {
+export default function PermanentDrawerLeft({ emailData, deleteEmail, toggleSeen }) {
+  
   const [selectedEmail, setSelectedEmail] = useState(null);
 
   const handleEmailClick = (email) => {
     setSelectedEmail(email);
     toggleSeen(email);
-    console.log(email.seen);
-    console.log(email.seen);
   };
-
-  console.log({ onEmailSelected });
 
   const [searchField, setSearchField] = useState("");
 
@@ -80,7 +76,7 @@ export default function PermanentDrawerLeft({ emailData, onEmailSelected, delete
             <div className="searchInputs">
               <input
                 type="search"
-                placeholder="From:"
+                placeholder="From: Search here..."
                 onChange={handleChange}
               />
               <div className="searchIcon">
@@ -102,7 +98,6 @@ export default function PermanentDrawerLeft({ emailData, onEmailSelected, delete
                 </Badge>
               </ListItemAvatar>
               <ListItemButton
-                selected={selectedEmail === email}
                 onClick={() => handleEmailClick(email)}
                 data-testid={`email-item-${email.id}`}
               >
